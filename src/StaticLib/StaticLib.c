@@ -23,26 +23,71 @@ void initialize_list(list* l)
 // 先頭にデータを追加
 void push_front(list* l, node* p)
 {
+	if (l->header != NULL) {
+		l->header->pPrev = p;
+	}
+	l->header = p;
 }
 
 // 末尾にデータを追加
 void push_back(list* l, node* p)
 {
+	if (l->footer != NULL) {
+		l->footer->pNext = p;
+
+	}
+	l->footer = p;
 }
 
 // pのノードを削除
 void remove_node(list* l, node* p)
 {
+	if (p->pPrev == NULL) {
+		p->pNext->pPrev = NULL;
+		l->header = p->pNext;
+	}
+	else if(p->pNext==NULL) {
+		p->pPrev->pNext = NULL;
+		l->footer = p->pPrev;
+	}
+	else {
+		p->pNext->pPrev = p->pPrev;
+		p->pPrev->pNext = p->pNext;
+	}
+	
 }
 
 // pの次のノードを削除
 void remove_next(list* l, node* p)
 {
+	if (p->pNext != NULL) {
+		if (p->pNext->pNext == NULL) {
+			p->pNext = NULL;
+			l->footer = p;
+		}
+		else {
+			p->pNext = p->pNext->pNext;
+			p->pNext->pNext->pPrev = p;
+		}
+	}
+	
 }
 
 // pの前のノードを削除
 void remove_prev(list* l, node* p)
 {
+	if (p->pPrev != NULL) {
+		if (p->pPrev->pPrev == NULL) {
+			p->pPrev = NULL;
+			l->header = p;
+		}
+		else {
+			p->pPrev->pPrev->pNext = p;
+			p->pPrev = p->pPrev->pPrev;
+		}
+		
+	}
+	
 }
 
 
