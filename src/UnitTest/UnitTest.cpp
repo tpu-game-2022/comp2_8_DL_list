@@ -1,5 +1,4 @@
-﻿#include "pch.h"
-#include "CppUnitTest.h"
+﻿#include "CppUnitTest.h"
 
 #include "../include/lib_func.h"
 
