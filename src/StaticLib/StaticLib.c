@@ -34,6 +34,7 @@ void push_front(list* l, node* p)
 
 	p->pNext = l->header;
 	l->header = p;	
+	
 }
 
 // 末尾にデータを追加
@@ -45,11 +46,11 @@ void push_back(list* l, node* p)
 	}
 	else
 	{
-		l->footer->pPrev = p;
+		l->footer->pNext = p;
 	}
 
-	p->pNext = l->header;
-	l->header = p;
+	p->pPrev = l->footer;
+	l->footer = p;	
 }
 
 // pのノードを削除
